@@ -1,8 +1,8 @@
 
 TARGET = obj
 GCC = gcc
-CFLAGS = -O2 -Wall
-CFLAGS += -I/usr/local/include/libxml2
+CFLAGS = -O2 -Wall -fPIC
+CFLAGS += -I/usr/include/libxml2
 VPATH = ..
 LIB = libsvg.so
 

@@ -3,7 +3,7 @@
 
 #define SVG_VERSION 120
 
-#include <libsvg/svg.h>
+#include "libsvg/svg.h"
 
 #ifdef VERBOSE
 #define dprintf(format, arg...) printf(format, ##arg)

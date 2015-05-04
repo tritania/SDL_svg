@@ -1,10 +1,20 @@
+#ifdef _WIN32
 #include <SDL.h>
+#include <SDL_image.h>
+#include <windows.h>
+#endif
+
+#ifdef __linux__ 
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <sys/stat.h>
+#endif
 #include "SDL_svg.h"
 #include "internals.h"
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
-#include <libsvg/svg.h>
+#include "libsvg/svg.h"
 #include "ftgrays.h"
 
 #define IFACTOR 64 // used to fix coords to the grays rendering engine format
