@@ -1,52 +1,30 @@
+OBJS = svg.c \
+	svg_ascii.c \
+	svg_attribute.c \
+	svg_color.c \
+	svg_element.c \
+	svg_gradient.c \
+	svg_group.c \
+	svg_length.c \
+	svg_paint.c \
+	svg_parser.c \
+	svg_path.c \
+	svg_pattern.c \
+	svg_str.c \
+	svg_style.c \
+	svg_text.c \
+	svg_transform.c
+CC = gcc
+CFLAGS = -O2 -Wall -fPIC -I/usr/include/libxml2
+LIBOBJ = libsvg.a
 
-TARGET = obj
-GCC = gcc
-CFLAGS = -O2 -Wall -fPIC
-CFLAGS += -I/usr/include/libxml2
-VPATH = ..
-LIB = libsvg.so
 
-OBJS = 	svg.o svg_ascii.o svg_attribute.o svg_color.o \
-	svg_element.o svg_gradient.o svg_group.o svg_length.o \
-	svg_paint.o svg_parser.o svg_pattern.o svg_path.o \
-	svg_str.o svg_style.o svg_text.o svg_transform.o
-
-#uncomment these lines below for the image capability
-#OBJS += svg_image.c
-#CFLAGS += -DIMAGE_CRAP
-
-HEADERS = svg.h svgint.h svg_ascii.h svg_version.h config.h
-
-all:
-	mkdir -p $(TARGET)
-	make -C $(TARGET) -f ../Makefile $(LIB)
-
-install:
-	cp $(TARGET)/libsvg.so /usr/local/lib
+lib:
+	git clone git://git.gnome.org/libxml2
+	cd libxml2 && sh autogen.sh --without-iconv --without-zlib --without-lzma --without-python --disable-shared && make
+	$ $(CC) $(CFLAGS) -c $(OBJS)
+	ar cr $(LIBOBJ) *.o
+	rm *.o
 
 clean:
-	rm -rf $(TARGET)
-
-$(LIB): $(OBJS)
-	$(GCC) -o $(LIB) -shared $(OBJS)
-
-.c.o:
-	$(GCC) -c -o $@ $(CFLAGS) $<
-
-svg.o:			svg.c $(HEADERS)
-svg_ascii.o:		svg_ascii.c $(HEADERS)
-svg_image.o:		svg_image.c $(HEADERS)
-svg_attribute.o:	svg_attribute.c $(HEADERS)
-svg_color.o:		svg_color.c $(HEADERS)
-svg_element.o:		svg_element.c $(HEADERS)
-svg_gradient.o:		svg_gradient.c $(HEADERS)
-svg_group.o:		svg_group.c $(HEADERS)
-svg_length.o:		svg_length.c $(HEADERS)
-svg_paint.o:		svg_paint.c $(HEADERS)
-svg_parser.o:		svg_parser.c $(HEADERS)
-svg_pattern.o:		svg_pattern.c $(HEADERS)
-svg_path.o:		svg_path.c $(HEADERS)
-svg_str.o:		svg_str.c $(HEADERS)
-svg_style.o:		svg_style.c $(HEADERS)
-svg_text.o:		svg_text.c $(HEADERS)
-svg_transform.o:	svg_transform.c $(HEADERS)
+	rm -f *.o *.so *.a $(LIBOBJ)
