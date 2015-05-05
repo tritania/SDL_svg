@@ -5,8 +5,13 @@ CXX = clang++
 LIBOBJ = libSDL_SVG.a
 TESTOBJ = svgtest
 
-INCLUDE = -I./ -I./libsvg
-LDFLAGS = -L./ -lSDL_SVG -lSDL2 -L./libsvg -lsvg -L./libsvg/libxml2/.libs -lxml2
+INCLUDE = -I./ -I./libsvg 
+LDFLAGS = -L./ -lSDL_SVG \
+		  -L/usr/local/cross-tools/x86_64-linux/lib -lSDL2 \
+		  -L./libsvg -lsvg \
+		  -L./libsvg/libxml2/.libs -lxml2 \
+		  -ldl \
+		  -lpthread \
 
 lib:
 	$ $(CC) -c $(OBJS)
