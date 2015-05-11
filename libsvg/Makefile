@@ -28,3 +28,4 @@ lib:
 
 clean:
 	rm -f *.o *.so *.a $(LIBOBJ)
+	rm -rf libxml2

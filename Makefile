@@ -14,6 +14,7 @@ LDFLAGS = -L./ -lSDL_SVG \
 		  -lpthread \
 
 lib:
+	cd libsvg && make lib
 	$ $(CC) -c $(OBJS)
 	ar cr $(LIBOBJ) *.o
 
