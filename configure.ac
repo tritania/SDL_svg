@@ -1,4 +1,4 @@
-AC_INIT([libsvg], [1.0], [])
+AC_INIT([libsdl-svg], [1.0], [])
 AM_INIT_AUTOMAKE([])
 AC_CHECK_HEADERS([zlib.h iconv.h],[],[],[])
 AC_PROG_CC
