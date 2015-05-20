@@ -315,7 +315,7 @@ _svg_parser_end (svg_parser_t *parser)
     xmlFreeParserCtxt (parser->ctxt);
     parser->ctxt = NULL;
 
-    xmlHashFree (parser->entities, (xmlHashDeallocator) xmlFree);
+    xmlHashFree (parser->entities, (xmlHashDeallocator) free);
     parser->entities = NULL;
 
     return parser->status;
@@ -347,14 +347,14 @@ _svg_parser_sax_entity_decl (void		*closure,
     entity = malloc (sizeof(xmlEntity));
 
     entity->type = XML_ENTITY_DECL;
-    entity->name = xmlMemStrdup (name);
+    entity->name = xmlStrdup (name);
     entity->etype = type;
     if (publicId)
-	entity->ExternalID = xmlMemStrdup (publicId);
+	entity->ExternalID = xmlStrdup (publicId);
     else
 	entity->ExternalID = NULL;
     if (systemId)
-	entity->SystemID = xmlMemStrdup (systemId);
+	entity->SystemID = xmlStrdup (systemId);
     else
 	entity->SystemID = NULL;
 

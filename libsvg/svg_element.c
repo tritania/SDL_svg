@@ -114,7 +114,7 @@ _svg_element_init_copy (svg_element_t	*element,
     element->type   = other->type;
     element->parent = other->parent;
     if (other->id)
-	element->id = xmlMemStrdup (other->id);
+	element->id = xmlStrdup (other->id);
     else
 	element->id = NULL;
 
@@ -487,7 +487,7 @@ _svg_element_apply_attributes (svg_element_t	*element,
 
     _svg_attribute_get_string (attributes, "id", &id, NULL);
     if (id)
-	element->id = xmlMemStrdup (id);
+	element->id = xmlStrdup (id);
 
     switch (element->type) {
     case SVG_ELEMENT_TYPE_SVG_GROUP:
