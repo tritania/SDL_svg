@@ -3,13 +3,11 @@
 
 #ifdef _WIN32
 #include <SDL.h>
-#include <SDL_image.h>
 #include <windows.h>
 #endif
 
 #ifdef __linux__ 
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include <sys/stat.h>
 #endif
 
